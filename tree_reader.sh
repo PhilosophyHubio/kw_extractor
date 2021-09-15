@@ -1,6 +1,7 @@
 #! /bin/bash
 echo "generating pdf list with absolute paths"
-find ../Zotero/test_storage/ | grep .pdf > pdf.list
+ZOTERO_STORAGE="../Zotero/test_storage/"
+find $ZOTERO_STORAGE -iname "*.pdf" > pdf.list
 echo -e "\nnumber of pdf files found:" && echo "$var" | wc -l pdf.list
 PDF_ABS_PATHS="pdf.list"
 echo -e "\nchecking for text in pdf list"
