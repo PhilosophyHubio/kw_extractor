@@ -2,14 +2,19 @@
 echo "updating pdf list with relative paths inside Zotero storage"
 find ../Zotero/storage/ | grep .pdf > pdflist.txt
 echo -e "\nnumber of pdf files found:" && echo "$var" | wc -l pdflist.txt
-PDF_ABS_PATHS="pdflist.txt"
+PDF_REL_PATHS="pdflist.txt"
 echo -e "\nchecking for text in pdf list"
+if [ ! -d corpora ]; then
+        mkdir corpora
+        echo "creating corpora folder"
+fi
+if [ ! -d keywords ]; then
+        mkdir keywords
+        echo "creating keywords folder"
+fi    
 while read -r line; do
     pdf_file=$line
     echo -e "\nprocessing file $pdf_file"
-    if [ ! -d corpora ]; then
-        mkdir corpora
-    fi
     path_base=${pdf_file%.pdf}
     filename_base=${path_base##*/}
     text_file="corpora/$filename_base.txt"
@@ -19,9 +24,6 @@ while read -r line; do
     else
         echo "$text_file found"
     fi
-    if [ ! -d keywords ]; then
-        mkdir keywords
-    fi
     kw_file_ext="_kw.json"
     kw_file="keywords/$filename_base$kw_file_ext"
     if [ ! -f "$kw_file" ]; then
@@ -29,4 +31,4 @@ while read -r line; do
     else
         echo "$kw_file found"
     fi
-done < "$PDF_ABS_PATHS"
+done < "$PDF_REL_PATHS"
