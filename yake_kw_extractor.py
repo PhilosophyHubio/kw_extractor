@@ -9,7 +9,7 @@ def extract_kw(text_file,pdf_file):
     max_ngram = 2
     dedup_lim = 0.9
     max_num_kw = 100
-    file_id = pdf_file.split("/")[4]
+    file_id = pdf_file.split("/")[3]
     kw_tuples = yake.KeywordExtractor(lan=lang,n=max_ngram,dedupLim=dedup_lim,top=max_num_kw).extract_keywords(text)
     kw_output = {
         "id": file_id,
