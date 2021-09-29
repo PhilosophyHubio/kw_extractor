@@ -1,9 +1,8 @@
 #! /bin/bash
-echo "generating pdf list with absolute paths"
-ZOTERO_STORAGE="../Zotero/test_storage/"
-find $ZOTERO_STORAGE -iname "*.pdf" > pdf.list
-echo -e "\nnumber of pdf files found:" && echo "$var" | wc -l pdf.list
-PDF_ABS_PATHS="pdf.list"
+echo "updating pdf list with relative paths inside Zotero storage"
+find ../Zotero/storage/ | grep .pdf > pdflist.txt
+echo -e "\nnumber of pdf files found:" && echo "$var" | wc -l pdflist.txt
+PDF_ABS_PATHS="pdflist.txt"
 echo -e "\nchecking for text in pdf list"
 while read -r line; do
     pdf_file=$line
