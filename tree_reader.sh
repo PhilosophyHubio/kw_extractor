@@ -7,18 +7,25 @@ echo -e "\nchecking for text in pdf list"
 while read -r line; do
     pdf_file=$line
     echo -e "\nprocessing file $pdf_file"
-    filename_base=${pdf_file%.pdf}
-    text_file="$filename_base.txt"
+    if [ ! -d corpora ]; then
+        mkdir corpora
+    fi
+    path_base=${pdf_file%.pdf}
+    filename_base=${path_base##*/}
+    text_file="corpora/$filename_base.txt"
     if [ ! -f "$text_file" ]; then
         echo -e "$text_file not found; creating it"
         pdftotext "$pdf_file" "$text_file"
     else
         echo "$text_file found"
     fi
+    if [ ! -d keywords ]; then
+        mkdir keywords
+    fi
     kw_file_ext="_kw.json"
-    kw_file="$filename_base$kw_file_ext"
+    kw_file="keywords/$filename_base$kw_file_ext"
     if [ ! -f "$kw_file" ]; then
-        python3 yake_kw_extractor.py "$text_file"
+        python3 yake_kw_extractor.py "$text_file" "$pdf_file"
     else
         echo "$kw_file found"
     fi
