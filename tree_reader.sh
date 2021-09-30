@@ -1,6 +1,13 @@
 #! /bin/bash
+
+if [[ -z "${ZOTERO_STORAGE}" ]]; then
+  ZOTERO_STORAGE="../Zotero/test_storage/"
+else
+  ZOTERO_STORAGE="${ZOTERO_STORAGE}"
+fi
+
 echo "updating pdf list with relative paths inside Zotero storage"
-find ../Zotero/storage/ | grep .pdf > pdflist.txt
+find $ZOTERO_STORAGE -iname "*.pdf" > pdflist.txt
 echo -e "\nnumber of pdf files found:" && echo "$var" | wc -l pdflist.txt
 PDF_REL_PATHS="pdflist.txt"
 echo -e "\nchecking for text in pdf list"
