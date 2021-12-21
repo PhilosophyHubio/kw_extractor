@@ -129,8 +129,8 @@ dmypy.json
 .pyre/
 
 # Directories
-keywords/
-corpora/
+batch/keywords/
+batch/corpora/
 
 # Files
-pdflist.txt
+batch/pdflist.txt

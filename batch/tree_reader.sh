@@ -1,7 +1,7 @@
 #! /bin/bash
 
 if [[ -z "${ZOTERO_STORAGE}" ]]; then
-  ZOTERO_STORAGE="../Zotero/test_storage/"
+  ZOTERO_STORAGE="../../Zotero/test_storage/"
 else
   ZOTERO_STORAGE="${ZOTERO_STORAGE}"
 fi
