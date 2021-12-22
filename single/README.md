@@ -1,6 +1,6 @@
 # On demand keyword extractor for Zotero
 
-This tool is meant to read the text of a pdf, using tools available via the textract module (pdftotext for pdf files with embedded text, and tesseract for OCR), and dumps a json with keywords extracted using yake module.
+This tool is meant to read the text of a pdf, using tools available via the textract module (pdftotext for pdf files with embedded text, and tesseract for OCR), and dumps a json with keywords extracted using yake module. If run directly from a terminal, any given number of parameters after ```python3 kw_extractor.py``` would be treated as separate Zotero id values to look for in the path defined for ```ZOTERO_STORAGE``` directly inside kw_extractor.py file. 
 
 ### About this "new version"
 
